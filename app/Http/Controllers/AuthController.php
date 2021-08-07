@@ -25,17 +25,12 @@ class AuthController extends Controller
 
     public function verifyToken(Request $request)
     {
-                                    return response([ "status" => "success", "message" => "Unable to verified user", "data" => session('user')], 400);
-
         if ($request->session()->has('user')) {
-                                    return response([ "status" => "success", "message" => "Unable to verified user" ], 400);
-
-            // if ($request->username == session('user')) {
-            //     return response([ "status" => "success", "message" => "User successfully verified", "data" => session('user') ], 200);
-            // } else {
-            //     return response([ "status" => "success", "message" => "Unable to verified user" ], 400);
-            // }
-            
+            if ($request->username == session('user')) {
+                return response([ "status" => "success", "message" => "User successfully verified", "data" => session('user') ], 200);
+            } else {
+                return response([ "status" => "success", "message" => "Unable to verified user" ], 400);
+            }
         }
     }
 
